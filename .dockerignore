@@ -1,0 +1,14 @@
+.idea/
+node_modules/
+node_modules
+npm-debug.log
+dist/
+dist
+graphql/
+test/
+.git
+.gitignore
+.dockerignore
+Dockerfile
+README.md
+nodemon.json

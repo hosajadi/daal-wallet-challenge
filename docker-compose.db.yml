@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  postgres_local_develop:
+    image: postgres:latest
+    container_name: ${POSTGRES_DB}
+    restart: always
+    ports:
+      - ${DB_PORT}:5432
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_local_develop:/var/lib/postgresql/data
+
+volumes:
+  postgres_local_develop:

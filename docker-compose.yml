@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+  nest-api:
+    container_name: nest-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - ${PORT}:3003
+    depends_on:
+      - postgres
+      - redis-cache
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src
+    networks:
+      - api-net
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    hostname: postgres
+    restart: always
+    ports:
+      - ${DB_PORT}:5432
+    env_file:
+      - .env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - api-net
+
+  redis-cache:
+    image: redis:6.2-alpine
+    container_name: redis-cache
+    hostname: redis-cache
+    restart: always
+    ports:
+      - ${REDIS_PORT}:6379
+    env_file:
+      - .env
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redis-cache:/data
+    networks:
+      - api-net
+
+volumes:
+  postgres:
+    name: nest-db
+  redis-cache:
+    driver: local
+
+networks:
+  api-net:
+    name: nginx-net
+    external: true
+
