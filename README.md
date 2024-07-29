@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Project Overview
 
 This project uses Postgres as the database and Prisma as the ORM. You can find all defined models (tables) and enums in `/prisma/schema.prisma`.
@@ -97,3 +98,7 @@ When seeding the database, it creates a default user with the following credenti
    - Phone Number: `09000001111`
    - Password: `adminadmin`
 </span>
+=======
+# daal-wallet-challenge
+This is the implementation of the Daal-insurance company's challenge
+>>>>>>> 5467681e82f658174ecc4a252260985e51e91338
